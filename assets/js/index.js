@@ -11,8 +11,22 @@
     var $document = $(document);
     var $body = $(document.body);
     var $content = $('.content', $body);
+    var $window = $(window);
+    var $teaserImage = $('.teaserimage-image');
+
+    // Parallax scroll main image
+    $window.on('scroll', function() {
+      var top = $window.scrollTop();
+      if (top < 0 || top > 1500) { return; }
+      $teaserImage.css({
+          transform: 'translate3d(0px, '+top/3+'px, 0px)',
+          opacity: 1-Math.max(top/700, 0)
+        });
+    });
 
     function pageInit() {
+      $teaserImage = $('.teaserimage-image');
+
       $(".post-content").fitVids();
 
       // Calculates Reading Time
@@ -29,7 +43,7 @@
           .after('<figcaption>'+$(this).attr("alt")+'</figcaption>');
         }
       });
-    };
+    }
 
     pageInit();
 

@@ -52,10 +52,10 @@
     if ($.support.pjax) {
       $document.on('pjax:start', function() {
         NProgress.start();
-        $body.scrollTop(0);
       });
 
       $document.on('pjax:end', function() {
+        $body.scrollTop(0);
         pageInit();
         if(typeof ga === 'function') {
           ga('set', 'location', window.location.href);
